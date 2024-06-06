@@ -319,7 +319,7 @@ def api_association_obs_exp_ratio(request):
         concept_details_2 = pd.DataFrame(du.get_omop_id(cur=cur,concept_id_list=concept_list_2))
         concept_details_2 = concept_details_2.rename(columns={'concept_id': 'concept_id_2','concept_name':'concept_name_2','concept_code':'concept_code_2','domain_id':'domain_id_2','vocabulary_id':'vocabulary_id_2'})
         detailed_results = pair_count.merge(concept_details_1)
-        results = high_level_summary.merge(detailed_results).groupby(['concept_id_2','ws_ln_ratio'])['concept_id_1','concept_name_1','concept_code_1','domain_id_1','vocabulary_id_1','concept_pair_count','w','ln_ratio','expected_count','observed_count'].apply(lambda x: x.to_dict('records')).reset_index(name='z_details')
+        results = high_level_summary.merge(detailed_results).groupby(['concept_id_2','ws_ln_ratio'])[['concept_id_1','concept_name_1','concept_code_1','domain_id_1','vocabulary_id_1','concept_pair_count','w','ln_ratio','expected_count','observed_count']].apply(lambda x: x.to_dict('records')).reset_index(name='z_details')
         results = results.merge(concept_details_2).sort_values('ws_ln_ratio',ascending=ascending)
         results = results.to_dict('records')
     json_return = {'results': results, 'parameter':{'dataset_id':dataset_id, 'domain_id': domain_id, 'concept_id_1': concept_id_1, 'concept_id_2': concept_id_2, 'top_n': top_n, 'ascending': ascending}}
