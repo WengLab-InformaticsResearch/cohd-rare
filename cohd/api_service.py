@@ -406,7 +406,7 @@ def get_arg_top_n(args, default_top_n=TOP_N_DEFAULT):
 def get_arg_ascending(args, default_ascending=ASCENDING_DEFAULT):
     ascending = args.get('ascending')
     if ascending is None:
-        top_n = default_ascending
+        ascending = default_ascending
     elif ascending.strip().lower() in ['true', '1', 't']:
        ascending = True
     else:
