@@ -8,3 +8,6 @@ pymysql
 semantic_version
 apscheduler
 bmt
+pandas
+uwsgi
+
