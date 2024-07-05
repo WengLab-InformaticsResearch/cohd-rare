@@ -373,7 +373,7 @@ def _get_weighted_statistics(cur=None,dataset_id=None,domain_id = None,concept_i
     '''
     concept_list_1_w_df= pd.DataFrame({'concept_id_1':concept_id_1})
     concept_list_1_w_df['w'] = 1
-    pair_count_q1 = pd.DataFrame(du.get_pair_concept_count(cur=cur,dataset_id=dataset_id,domain_id=domain_id, concept_id_list_1=concept_id_1,concept_id_list_2=concept_id_1))
+    pair_count_q1 = pd.DataFrame(du.get_pair_concept_count(cur=cur,dataset_id=dataset_id,domain_id=None, concept_id_list_1=concept_id_1,concept_id_list_2=concept_id_1))
     if pair_count_q1.shape[0] > 0:
         pair_count_q1['jaccard_index'] = pair_count_q1['concept_pair_count'] / (pair_count_q1['concept_count_1'] + pair_count_q1['concept_count_2'] - pair_count_q1['concept_pair_count'])
         pair_count_q1 = pair_count_q1.groupby('concept_id_1')['jaccard_index'].agg('sum').reset_index()
